@@ -33,7 +33,6 @@ class TicTacToeNode
 
     if self.board.winner == player
       #puts "winning node"
-      p self.board
       return true
     elsif !self.board.over?
       new_children = self.children
@@ -53,7 +52,6 @@ class TicTacToeNode
 
   def losing_node?(player)
     if self.board.winner == MARK[player]
-      puts "loss"
       return true
     elsif !self.board.over?
       if self.mark == player
@@ -79,7 +77,6 @@ class ComputerPlayer
       end
     end
 
-    p "DID WE GET HERE?"
     start_node.children.each do |child|
       if child.losing_node?(mark) == false
         return child.prev_move_pos
@@ -88,15 +85,3 @@ class ComputerPlayer
 
   end
 end
-
-
-#new_board = Board.new([[:x,:x,:o],[:o,:x,:o],[:o,:o,nil]])
-
-# hp = HumanPlayer.new("Ned")
-# cp = ComputerPlayer.new
-# new_game = TicTacToe.new(hp, cp)
-# game = TicTacToeNode.new(new_game.board, :x)
-# x = game.children(new_game.board)
-# x.each {|y| p y.board}
-# x[0].winning_node?(:o)
-# p game.winning_node?(:o)
